@@ -21,7 +21,6 @@ export default function Home() {
                                     <table className="table">
                                         <thead>
                                             <tr>
-
                                             </tr>
                                         </thead>
                                         <tbody>
