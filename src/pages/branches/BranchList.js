@@ -3,7 +3,7 @@ import Moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState, useCallback, Fragment } from 'react';
 import {  useGetBranchesQuery } from "../Services/api";
-export default function Home() {
+export default function BranchList() {
     const [pageUrl, setPageUrl] = useState("");
     const [search, setSearchQuery] = useState("");
     const {
@@ -18,7 +18,7 @@ export default function Home() {
   const dispatch = useDispatch();
   let branchesContent
     return (
-        <div className="Home">
+        <div className="BranchList">
             
             <Header />
             
