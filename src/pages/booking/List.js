@@ -15,7 +15,7 @@ export default function List() {
                             <div className="card">
                                 <div className="card-body">
                                     <h5 className="card-title">Booking Price setting </h5>
-                                        <table class="table">
+                                        <table className="table">
                                             <thead>
                                             <tr>
                                                 <form action="{{url('')}}" method="POST">

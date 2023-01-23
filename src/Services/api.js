@@ -39,17 +39,20 @@ export const api = emptySplitApi.injectEndpoints({
         method: "POST",
       }),
     }),
-    languageTranslation: builder.query({
-      query: (id) => ({
-         url: API_END_POINTS.login,
-        method: "GET",
-      }),
-      providesTags: (result, error, id) => [
-        { type: "languageTranslationQuery", id },
-      ],
-    }),
+   
     ///end auth route
-  
+    getBranches: builder.query({
+      query: ({ pageUrl, params }) => {
+        return {
+          url: pageUrl || API_END_POINTS.getBranches,
+          method: "GET",
+          params,
+        };
+      },
+
+      providesTags: (result, error, id) => [{ type: "getBranches", id }],
+    }),
+
   }),
 
   overrideExisting: true,
@@ -61,5 +64,6 @@ export const {
   useForgetpasswordMutation,
   useNewpasswordMutation,
   useLogoutMutation,
+  useGetBranchesQuery,
 
 } = api;
