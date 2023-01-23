@@ -6,17 +6,15 @@ export const api = emptySplitApi.injectEndpoints({
   reducerPath: "api",
   refetchOnMountOrArgChange: true,
   endpoints: (builder) => ({
-    // auth route//////
     loginuser: builder.mutation({
       query: ({ data }) => ({
-       
         url: API_END_POINTS.login,
         method: "POST",
         body: { ...data },
       }),
-      invalidatesTags: ["getLanguage", "languageDropdown"],
+      /** invalidatesTags: ["getLanguage", "languageDropdown"],*/
     }),
-   
+
     forgetpassword: builder.mutation({
       query: ({ data }) => ({
         url: API_END_POINTS.resetPassword,
@@ -32,15 +30,13 @@ export const api = emptySplitApi.injectEndpoints({
         body: { ...data },
       }),
     }),
-
     logout: builder.mutation({
       query: () => ({
         url: API_END_POINTS.logout,
         method: "POST",
       }),
     }),
-   
-    ///end auth route start Branches
+
     getBranches: builder.query({
       query: ({ pageUrl, params }) => {
         return {
@@ -49,7 +45,10 @@ export const api = emptySplitApi.injectEndpoints({
           params,
         };
       },
-      providesTags: (result, error, id) => [{ type: "getBranches", id }],
+
+
+      /** providesTags: (result, error, id) => [{ type: "getBranches", id }], */
+
     }),
     ///voucher 
     getPromo: builder.query({
@@ -68,7 +67,6 @@ export const api = emptySplitApi.injectEndpoints({
   overrideExisting: true,
 
 });
-
 export const {
   useLoginuserMutation,
   useForgetpasswordMutation,
