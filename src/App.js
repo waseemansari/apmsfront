@@ -3,6 +3,8 @@ import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Login from "./pages/auth/Login";
 import BookingList from "./pages/booking/List";
+import VoucherSettingsList from "./pages/voucher_settings/VoucherSettingsList";
+import Routing from "./routes/routes";
 import { BrowserRouter, Routes, Route ,Navigate} from "react-router-dom";
 function App() {
   return (
@@ -12,8 +14,9 @@ function App() {
             <Route>
               <Route path="/" element={<Navigate to="/login" replace/>} />
               <Route path="dashboard" element={<Home />} />
-              
               <Route path="booking-list" element={<BookingList />} />
+              <Route path="voucher-settings" element={<VoucherSettingsList />} />
+              
               <Route path="/login" element={<Login />} />
               <Route path="*" element={<NoPage />} />
             </Route>
