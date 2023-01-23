@@ -36,6 +36,7 @@ export const api = emptySplitApi.injectEndpoints({
         method: "POST",
       }),
     }),
+
     getBranches: builder.query({
       query: ({ pageUrl, params }) => {
         return {
@@ -45,7 +46,20 @@ export const api = emptySplitApi.injectEndpoints({
         };
       },
 
+
       /** providesTags: (result, error, id) => [{ type: "getBranches", id }], */
+
+    }),
+    ///voucher 
+    getPromo: builder.query({
+      query: ({ pageUrl, params }) => {
+        return {
+          url: pageUrl || API_END_POINTS.getPromoSettings,
+          method: "GET",
+          params,
+        };
+      },
+      providesTags: (result, error, id) => [{ type: "getPromo", id }],
     }),
 
   }),
@@ -59,5 +73,6 @@ export const {
   useNewpasswordMutation,
   useLogoutMutation,
   useGetBranchesQuery,
+  useGetPromoQuery,
 
 } = api;

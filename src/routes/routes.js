@@ -1,6 +1,4 @@
-import React, { Suspense, lazy } from "react";
-import { useRoutes, Navigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+
 
 import PATHS from "./paths";
 import DashbaordLayout from '../pages/Home'
@@ -142,3 +140,4 @@ const SignIn = Loadable(lazy(() => import("../pages/auth/Login")));
 // const ScaffoldingManagement = Loadable(lazy(() => import("../pages/scaffoldingManagement/ScaffoldingManagementTabs")));
 // const Competence = Loadable(lazy(() => import("../pages/competence/CompetenceTabs")));
 // const SafetyDocument = Loadable(lazy(() => import("../pages/safetyDocument/SafetyDocumentTabs")));
+

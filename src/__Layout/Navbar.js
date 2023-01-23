@@ -24,6 +24,18 @@ export default function Navbar() {
                            
                         </ul>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/branches" className="nav-link collapsed">
+                            <i className="bi bi-grid"></i>
+                            <span>Branches</span>
+                        </Link>
+                    </li>
+                    <li className="nav-item">
+                        <Link to="/voucher-settings" className="nav-link collapsed">
+                            <i className="bi bi-grid"></i>
+                            <span>Voucher Settings</span>
+                        </Link>
+                    </li>
 
                 </ul>
 
