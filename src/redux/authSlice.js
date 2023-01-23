@@ -20,7 +20,6 @@ export const authSlice = createSlice({
   initialState,
   reducers: {
     loggedIn: (state, data) => {
-      console.log("prmission login auth",data,data.payload?.user?.permission);
       state.isLoggedIn = true;
       state.userDetail = data.payload;
       state.userPermissions = data.payload?.user?.permission;
