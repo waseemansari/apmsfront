@@ -1,8 +1,8 @@
-import Header from '../__Layout/Header';
+import Header from '../../__Layout/Header';
 import Moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState, useCallback, Fragment } from 'react';
-import {  useGetBranchesQuery } from "../Services/api";
+import {  useGetBranchesQuery } from "../../Services/api";
 export default function BranchList() {
     const [pageUrl, setPageUrl] = useState("");
     const [search, setSearchQuery] = useState("");

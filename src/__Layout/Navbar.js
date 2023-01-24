@@ -36,6 +36,12 @@ export default function Navbar() {
                             <span>Voucher Settings</span>
                         </Link>
                     </li>
+                    <li className="nav-item">
+                        <Link to="/vehicle-categories" className="nav-link collapsed">
+                            <i className="bi bi-grid"></i>
+                            <span>Vehicle category</span>
+                        </Link>
+                    </li>
 
                 </ul>
 
