@@ -3,7 +3,7 @@ import Moment from 'moment';
 import { useSelector, useDispatch } from "react-redux";
 import React, { useEffect, useState, useCallback, Fragment } from 'react';
 import {  useGetPromoQuery } from "../../Services/api";
-export default function VoucherSettingsList() {
+export default function VehicleCategory() {
     const [pageUrl, setPageUrl] = useState("");
     const [search, setSearchQuery] = useState("");
     const {
@@ -16,9 +16,8 @@ export default function VoucherSettingsList() {
       } = useGetPromoQuery({ pageUrl, params: { search } });
       
   const dispatch = useDispatch();
-  let branchesContent
     return (
-        <div className="VoucherSettingsList">
+        <div className="vehicleCategories">
             
             <Header />
             
@@ -26,13 +25,13 @@ export default function VoucherSettingsList() {
                 
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">Voucher Settings</h5>
+                    <h5 className="card-title">Vehicle Category</h5>
                     <ul className="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
                         <li className="nav-item flex-fill" role="presentation">
-                        <button className="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home" aria-selected="true">Voucher Settings List</button>
+                        <button className="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home" aria-selected="true">Vehicle Category List</button>
                         </li>
                         <li className="nav-item flex-fill" role="presentation">
-                        <button className="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Create Voucher Settings</button>
+                        <button className="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Create Vehicle Category</button>
                         </li>
                     </ul>
                     <div className="tab-content pt-2" id="borderedTabJustifiedContent">
@@ -42,30 +41,29 @@ export default function VoucherSettingsList() {
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-body">
-                                                <h5 className="card-title">Branches</h5>
+                                                <h5 className="card-title">Vehicle Category</h5>
                                                 <table className="table">
                                                         <thead>
                                                         <tr>
                                                             <th>#</th>
-                                                            <th className='text-capitalize'>promo type</th>
-                                                            <th className='text-capitalize'>effect type</th>
-                                                            <th className='text-capitalize'>price</th>
-                                                            <th className='text-capitalize'>status</th>
+                                                            <th className='text-capitalize'>vehicle name</th>
+                                                            <th className='text-capitalize'>service charges</th>
+                                                            <th className='text-capitalize'>base rate</th>
+                                                            <th className='text-capitalize'>branch</th>
                                                             <th className='text-capitalize'>action</th>
                                                         </tr>
                                                         </thead>
                                                         <tbody>
                                                         {
                                                         
-                                                            branchesContent = PromoSettings?.data?.data?.map((item) => {
+                                                         PromoSettings?.data?.data?.map((item) => {
                                                             return (
                                                                 <tr key={item.id}>
                                                                     <th scope="row">{item.id}</th>
-                                                                    <td>{item.promo_type}</td>
-                                                                    <td>{item.effect_type}</td>
-                                                                    <td>{item.price}</td>
-                                                                    <td>{item.status}</td>
-
+                                                                    <td>{item.vehicle_name}</td>
+                                                                    <td>{item.service_charges}</td>
+                                                                    <td>{item.base_rate}</td>
+                                                                    <td>{item.branch_id}</td>
                                                                     <td>
                                                                         <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
 

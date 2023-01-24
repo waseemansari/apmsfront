@@ -3,4 +3,5 @@ export const API_END_POINTS = {
   login: BASE_URL + "login",
   getBranches: BASE_URL + "branches",
   getPromoSettings: BASE_URL + "promo-settings",
+  getVehicleCategory: BASE_URL + "vehicle-category",
 };
