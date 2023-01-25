@@ -1,4 +1,7 @@
 
+import React, { Suspense, lazy } from "react";
+import { useRoutes, Navigate } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import PATHS from "./paths";
 import DashbaordLayout from '../pages/Home'
@@ -37,7 +40,7 @@ export default function Router() {
   // const company_or_client_view = checkPermission(COMPANY_OR_CLIENT_VIEW);
 
   const auth = useSelector((data) => data.auth);
-  // const main_admin = useSelector((state) => state.auth?.userDetail?.user?.role[0]);
+  const main_admin = useSelector((state) => state.auth?.userDetail?.user);
 
   return useRoutes(
     auth.isLoggedIn && auth.userDetail ? [
@@ -45,33 +48,33 @@ export default function Router() {
       {
         path: PATHS.dashboard,
         element: <DashbaordLayout />,
-        // children: [
-        //   {
-        //     path: PATHS.dashboard,
-        //     element: (
-        //       <Navigate
-        //         to={
-        //           (user_view && main_admin != 'main_admin')
-        //             ? PATHS.users
-        //             : company_or_client_view
-        //               ? PATHS.clients
-        //               : (permission_view || role_view)
-        //                 ? PATHS.rolepermission
-        //                 : language_view
-        //                   ? PATHS.localization
-        //                   : company_view
-        //                     ? PATHS.companies
-        //                     : field_manage
-        //                       ? PATHS.fieldManagement
-        //                       : (client_view || site_view || project_view || zone_view)
-        //                         ? PATHS.clientSites
-        //                         : information_view
-        //                           ? PATHS.information
-        //                           : PATHS.Profile
-        //         }
-        //       />
-        //     ),
-        //   },
+        //children: [
+          // {
+          //   path: PATHS.dashboard,
+          //   element: (
+          //     <Navigate
+          //       to={
+          //         (user_view && main_admin != 'main_admin')
+          //           ? PATHS.users
+          //           : company_or_client_view
+          //             ? PATHS.clients
+          //             : (permission_view || role_view)
+          //               ? PATHS.rolepermission
+          //               : language_view
+          //                 ? PATHS.localization
+          //                 : company_view
+          //                   ? PATHS.companies
+          //                   : field_manage
+          //                     ? PATHS.fieldManagement
+          //                     : (client_view || site_view || project_view || zone_view)
+          //                       ? PATHS.clientSites
+          //                       : information_view
+          //                         ? PATHS.information
+          //                         : PATHS.Profile
+          //       }
+          //     />
+          //   ),
+          // },
         //   { path: PATHS.users, element: <Users /> },
         //   { path: PATHS.toolboxmeeting, element: <ToolBoxMeeting /> },
         //   { path: PATHS.toolboxmeetingDetail, element: <TbmDetail /> },
@@ -98,9 +101,9 @@ export default function Router() {
         //   { path: PATHS.siTemplateReport, element: <SiReport /> },
         //   { path: PATHS.lmraTemplateDetails, element: <LmraTemplateDetails /> },
         //   { path: PATHS.lmraTemplateReport, element: <LmraTemplateTemplate /> },
-        // ],
-      },
-      { path: "*", element: <Navigate to={PATHS.dashboard} /> },
+      // ],
+       },
+      // { path: "*", element: <Navigate to={PATHS.dashboard} /> },
     ]
       : [
         { path: "/", element: <Navigate to={PATHS.signin} /> },
