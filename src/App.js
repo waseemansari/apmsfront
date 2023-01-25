@@ -16,7 +16,7 @@ function App() {
           { <Routes>
             <Route>
               <Route path="/" element={<Navigate to="/login" replace/>} />
-              <Route path="dashboard" element={<Home />} />
+              <Route path="dashboard/branches" element={<Home />} />
               <Route path="branches" element={<BranchList />} />
               <Route path="voucher-settings" element={<VoucherSettingsList />} />
               <Route path="vehicle-categories" element={<VehicleCategory />} />
