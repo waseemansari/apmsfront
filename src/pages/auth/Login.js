@@ -102,7 +102,7 @@ export default function Login() {
                           </div>
                         </div> */}
                         <div className="col-12">
-                          <button type="submit" className="btn btn-warning w-100" onClick={handleSubmit(onSubmit)}> Login</button>
+                          <button type="submit" className="btn btn-warning w-100" onClick={handleSubmit(onSubmit)}>Login</button>
                         </div>
                         <div className="col-12">
                         </div>
