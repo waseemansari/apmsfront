@@ -1,9 +1,8 @@
 import Header from '../../__Layout/Header';
-import Moment from 'moment';
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, useState, useCallback, Fragment } from 'react';
+import { useDispatch } from "react-redux";
+import React, {useState } from 'react';
 import {  useGetdiarylistQuery } from "../../Services/api";
 export default function DiaryList() {
     const [pageUrl, setPageUrl] = useState("");
@@ -11,17 +10,16 @@ export default function DiaryList() {
     
     const {
         data: diaryList,
-        isLoading: isGetLoading,
-        isSuccess: isGetSuccess,
-        isError: isGetError,
-        error: getError,
+        // isLoading: isGetLoading,
+        // isSuccess: isGetSuccess,
+        // isError: isGetError,
+        // error: getError,
         
       } = useGetdiarylistQuery({ pageUrl, params: { search } });
      
         const w = diaryList?.chart;
       
        const events= w; ////
-    const dispatch = useDispatch();
     return (
         <div className="vehicleCategories">
             
