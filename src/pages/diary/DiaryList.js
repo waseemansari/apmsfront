@@ -1,13 +1,13 @@
 import Header from '../../__Layout/Header';
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import { useDispatch } from "react-redux";
 import React, {useState } from 'react';
 import {  useGetdiarylistQuery } from "../../Services/api";
 export default function DiaryList() {
-    const [pageUrl, setPageUrl] = useState("");
-    const [search, setSearchQuery] = useState("");
-    
+    // const [pageUrl, setPageUrl] = useState("");
+    // const [search, setSearchQuery] = useState("");
+    const pageUrl = "";
+    const search = "";
     const {
         data: diaryList,
         // isLoading: isGetLoading,
