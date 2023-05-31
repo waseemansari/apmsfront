@@ -15,7 +15,7 @@ export default function Login() {
   const [errorOccured, setErrorOccured] = useState(null)
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
-    password: Yup.string().min(3, "Password must be at least 8 characters")
+    password: Yup.string().required("Password is required").min(3, "Password must be at least 8 characters")
       .required("Password is required"),
   });
 
@@ -69,13 +69,13 @@ export default function Login() {
                   <div className="d-flex justify-content-center py-4">
 
                     <img src="assets/img/logo.png" alt="" />
-                    {/* <span className="d-none d-lg-block">APMS</span> */}
+                    {/* <span className="d-none d-lg-block">CRM</span> */}
                   </div>
                   <div className="card mb-3">
                     <div className="card-body">
                       <div className="pt-4 pb-2">
                         {/* <h5 className="card-title text-center pb-0 fs-4">Login to Your Account</h5> */}
-                        <h5 className="card-title text-center pb-0 fs-4">APMS </h5>
+                        <h5 className="card-title text-center pb-0 fs-4">CRM </h5>
                         {/* <p className="text-center small">Enter your username & password to login</p> */}
                       </div>
                       <form className="row g-3 needs-validation" >
@@ -102,7 +102,7 @@ export default function Login() {
                           </div>
                         </div> */}
                         <div className="col-12">
-                          <button type="submit" className="btn btn-primary w-100" onClick={handleSubmit(onSubmit)}>Login</button>
+                          <button type="submit" className="btn btn-warning w-100" onClick={handleSubmit(onSubmit)}>Login</button>
                         </div>
                         <div className="col-12">
                         </div>

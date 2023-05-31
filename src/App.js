@@ -2,30 +2,29 @@
 import Home from "./pages/Home";
 import NoPage from "./pages/NoPage";
 import Login from "./pages/auth/Login";
-import BookingList from "./pages/booking/List";
-import BranchList from "./pages/branches/BranchList";
-import VehicleCategory from "./pages/vehicle_categories/VehicleCategory";
-import VoucherSettingsList from "./pages/voucher_settings/VoucherSettingsList";
-import Routing from "./routes/routes";
+import CreateDiary from "./pages/diary/CreateDiary";
+import DiaryList from "./pages/diary/DiaryList";
+import Profile from "./pages/auth/Profile";
 import { BrowserRouter, Routes, Route ,Navigate} from "react-router-dom";
-import Router from './routes/routes'
+import PasswordUpdate from "./pages/auth/PasswordUpdate";
 function App() {
   return (
     <div className="App">
         
-          { <Routes>
+          { 
+          <Routes>
             <Route>
               <Route path="/" element={<Navigate to="/login" replace/>} />
-              <Route path="dashboard/branches" element={<Home />} />
-              <Route path="branches" element={<BranchList />} />
-              <Route path="voucher-settings" element={<VoucherSettingsList />} />
-              <Route path="vehicle-categories" element={<VehicleCategory />} />
-              <Route path="vehicle-categories" element={<VehicleCategory />} />
+              <Route path="dashboard" element={<Home />} />
+              <Route path="add-diary" element={<CreateDiary />} />
               <Route path="/login" element={<Login />} />
+              <Route path="/diary-list" element={<DiaryList />} />
+              <Route path="/profile" element={<Profile />} />
+              <Route path="/password-update" element={<PasswordUpdate />} />
               <Route path="*" element={<NoPage />} />
             </Route>
-          </Routes> }
-          {/* <Router/> */}
+          </Routes> 
+          }
     </div>
   );
 }

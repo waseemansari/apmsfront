@@ -9,6 +9,8 @@ const paths = {
   resetpassword: '/resetpassword',
   newPassword: '/newpassword/:token_id',
   dashboard: '/dashboard',
+  diaryList: '/diary-list',
   branches : path(ROOTS_DASHBOARD,'/branches'),
+  signout: '/',
 }
 export default paths;

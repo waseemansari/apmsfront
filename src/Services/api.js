@@ -12,20 +12,17 @@ export const api = emptySplitApi.injectEndpoints({
         method: "POST",
         body: { ...data },
       }),
-      /** invalidatesTags: ["getLanguage", "languageDropdown"],*/
     }),
-
-    forgetpassword: builder.mutation({
+    updatepassword: builder.mutation({
       query: ({ data }) => ({
-        url: API_END_POINTS.resetPassword,
-        method: "POST",
+        url: API_END_POINTS.updatePassword,
+        method: "PUT",
         body: { ...data },
       }),
     }),
-
-    newpassword: builder.mutation({
+    updateProfile: builder.mutation({
       query: ({ data }) => ({
-        url: API_END_POINTS.updatePassword,
+        url: API_END_POINTS.updateProfile,
         method: "PUT",
         body: { ...data },
       }),
@@ -36,32 +33,38 @@ export const api = emptySplitApi.injectEndpoints({
         method: "POST",
       }),
     }),
-
-    getBranches: builder.query({
+    adddiary: builder.mutation({
+      query: ({ data }) => ({
+        url: API_END_POINTS.adddiary,
+        method: "POST",
+        body: { ...data },
+      }),
+    }),
+    getdiarylist: builder.query({
       query: ({ pageUrl, params }) => {
         return {
-          url: pageUrl || API_END_POINTS.getBranches,
+          url: pageUrl || API_END_POINTS.diarylist,
           method: "GET",
           params,
         };
       },
-
-
-      /** providesTags: (result, error, id) => [{ type: "getBranches", id }], */
-
     }),
-    ///voucher 
-    getPromo: builder.query({
-      query: ({ pageUrl, params }) => {
+    deletediary: builder.mutation({
+      query: ({ data }) => ({
+        url: API_END_POINTS.deletediary,
+        method: "DELETE",
+        body: { ...data },
+      }),
+    }),
+    getManagerList: builder.query({
+      query: () => {
         return {
-          url: pageUrl || API_END_POINTS.getPromoSettings,
+          url: API_END_POINTS.managerList,
           method: "GET",
-          params,
         };
       },
-      providesTags: (result, error, id) => [{ type: "getPromo", id }],
     }),
-
+   
   }),
 
   overrideExisting: true,
@@ -69,10 +72,11 @@ export const api = emptySplitApi.injectEndpoints({
 });
 export const {
   useLoginuserMutation,
-  useForgetpasswordMutation,
-  useNewpasswordMutation,
+  useUpdatepasswordMutation,
+  useUpdateProfileMutation,
   useLogoutMutation,
-  useGetBranchesQuery,
-  useGetPromoQuery,
-
+  useAdddiaryMutation,
+  usedeletediaryMutation,
+  useGetdiarylistQuery,
+  useGetManagerListQuery,
 } = api;

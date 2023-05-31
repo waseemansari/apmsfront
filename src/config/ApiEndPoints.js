@@ -1,7 +1,12 @@
 export const BASE_URL = process.env.REACT_APP_BACKEND_URL_LIVE;
 export const API_END_POINTS = {
-  login: BASE_URL + "login",
-  getBranches: BASE_URL + "branches",
-  getPromoSettings: BASE_URL + "promo-settings",
-  getVehicleCategory: BASE_URL + "vehicle-category",
-};
+  login: BASE_URL + "auth/login",
+  logout: BASE_URL + "auth/logout",
+  updateProfile: BASE_URL + "auth/update-profile",
+  updatePassword: BASE_URL + "auth/update-password",
+  logout: BASE_URL + "auth/logout",
+  adddiary: BASE_URL + "add-diary",
+  diarylist: BASE_URL + "diary-list",
+  deletediary: BASE_URL + "diary-delete",
+  managerList: BASE_URL + "manager-list",
+}; 
