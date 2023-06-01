@@ -2,6 +2,7 @@ import Header from '../../__Layout/Header';
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
 import React from 'react';
+import { Link} from "react-router-dom"
 import {  useGetdiarylistQuery } from "../../Services/api";
 export default function DiaryList() {
     // const [pageUrl, setPageUrl] = useState("");
@@ -91,12 +92,12 @@ export default function DiaryList() {
                                                                             </button>
                                                                             <div className="dropdown-menu" aria-labelledby="btnGroupDrop1">
                                                                          
-                                                                            <a className="dropdown-item" href="#">
+                                                                            <Link className="dropdown-item" to="#">
                                                                                 <div className="icon">
                                                                                 <i className="bi bi-trash"></i>
 
                                                                                 </div>
-                                                                            </a>
+                                                                            </Link>
                                                                             </div>
                                                                         </div>
                                                                         </div>
