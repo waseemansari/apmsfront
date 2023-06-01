@@ -1,6 +1,6 @@
 import Header from '../__Layout/Header';
 import notFound from "../assets/img/not-found.svg"; 
-import { Outlet, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 export default function NoPage() {
     return (
         <div className="NoPage">

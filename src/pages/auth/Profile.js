@@ -1,9 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {useUpdateProfileMutation} from "../../Services/api";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../__Layout/Header";
 
@@ -21,7 +21,7 @@ export default function Profile() {
     defaultValues,
   });
   
-  const [UpdateProfile, { isLoadingP, isErrorP }] = useUpdateProfileMutation();
+  const [UpdateProfile] = useUpdateProfileMutation();
   const {
     register,
     handleSubmit,

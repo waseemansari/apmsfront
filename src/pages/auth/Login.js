@@ -1,18 +1,16 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
-import { useSelector } from 'react-redux';
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import PATHS from "../../routes/paths";
 import { loggedIn } from "../../redux/authSlice";
 import { useLoginuserMutation } from "../../Services/api";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default function Login() {
-  const [errorOccured, setErrorOccured] = useState(null)
   const validationSchema = Yup.object().shape({
     email: Yup.string().required("Email is required").email("Email is invalid"),
     password: Yup.string().required("Password is required").min(3, "Password must be at least 8 characters")
@@ -26,7 +24,7 @@ export default function Login() {
     resolver: yupResolver(validationSchema),
     defaultValues,
   });
-  const [loginuser, { isLoading, isError }] = useLoginuserMutation();
+  const [loginuser] = useLoginuserMutation();
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const {

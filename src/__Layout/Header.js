@@ -1,16 +1,13 @@
 import Navbar from './Navbar';
-import { Link, NavLink ,useNavigate} from "react-router-dom";
+import { Link ,useNavigate} from "react-router-dom";
 import { useLogoutMutation } from "../Services/api";
 import PATHS from "../routes/paths";
-import { useDispatch } from "react-redux";
-import { ToastContainer, toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
-import { loggedIn } from "../redux/authSlice";
+import {toast } from 'react-toastify';
+
 export default function Header() {
-    const dispatch = useDispatch();
     
     const navigator = useNavigate();
-    const [logout, { isLoading, isError }] = useLogoutMutation();
+    const [logout] = useLogoutMutation();
     const logoutUser = (values) => {
         // localStorage.removeItem('token-info');
         // setIsLoggedin(false);

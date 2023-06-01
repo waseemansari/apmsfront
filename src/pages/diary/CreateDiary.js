@@ -1,12 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import * as Yup from "yup";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
-import PATHS from "../../routes/paths";
 import { useAdddiaryMutation } from "../../Services/api";
 import { useForm } from "react-hook-form";
-import { ToastContainer, toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../__Layout/Header";
 
@@ -29,7 +28,7 @@ export default function Creatediary() {
     resolver: yupResolver(validationSchema),
     defaultValues,
   });
-  const [adddiary, { isLoading, isError }] = useAdddiaryMutation();
+  const [adddiary] = useAdddiaryMutation();
   const dispatch = useDispatch();
   const navigator = useNavigate();
   const {

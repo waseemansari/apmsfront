@@ -1,7 +1,7 @@
 import Header from '../../__Layout/Header';
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
-import React, {useState } from 'react';
+import React from 'react';
 import {  useGetdiarylistQuery } from "../../Services/api";
 export default function DiaryList() {
     // const [pageUrl, setPageUrl] = useState("");

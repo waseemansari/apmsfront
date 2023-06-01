@@ -5,7 +5,7 @@ import Login from "./pages/auth/Login";
 import CreateDiary from "./pages/diary/CreateDiary";
 import DiaryList from "./pages/diary/DiaryList";
 import Profile from "./pages/auth/Profile";
-import { BrowserRouter, Routes, Route ,Navigate} from "react-router-dom";
+import { Routes, Route ,Navigate} from "react-router-dom";
 import PasswordUpdate from "./pages/auth/PasswordUpdate";
 function App() {
   return (

@@ -1,13 +1,7 @@
 import Header from '../__Layout/Header';
-import Moment from 'moment';
-import { useSelector, useDispatch } from "react-redux";
-import React, { useEffect, useState, useCallback, Fragment } from 'react';
+import React from 'react';
 export default function Home() {
-    const [pageUrl, setPageUrl] = useState("");
-    const [search, setSearchQuery] = useState("");
       
-  const dispatch = useDispatch();
-  let branchesContent
     return (
         <div className="Home">
             
