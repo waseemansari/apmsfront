@@ -1,6 +1,5 @@
 
-import { Link, NavLink } from "react-router-dom";
-import PATHS from "../routes/paths";
+import { Link} from "react-router-dom";
 export default function Navbar() {
     return (
         <>
@@ -13,9 +12,9 @@ export default function Navbar() {
                         </Link>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" href="#">
+                        <Link className="nav-link collapsed" data-bs-target="#forms-nav" data-bs-toggle="collapse" to="#">
                             <i className="bi bi-journal-text"></i><span>Master diary</span><i className="bi bi-chevron-down ms-auto"></i>
-                        </a>
+                        </Link>
                         <ul id="forms-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                             <li>
                                 <Link to="/diary-list">

@@ -4,7 +4,6 @@ export const API_END_POINTS = {
   logout: BASE_URL + "auth/logout",
   updateProfile: BASE_URL + "auth/update-profile",
   updatePassword: BASE_URL + "auth/update-password",
-  logout: BASE_URL + "auth/logout",
   adddiary: BASE_URL + "add-diary",
   diarylist: BASE_URL + "diary-list",
   deletediary: BASE_URL + "diary-delete",

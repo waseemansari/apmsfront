@@ -44,9 +44,10 @@ export default function Profile() {
 
          toast.error(error.data.message)
       });
-    if (1 == 1) {
-      notify();
-    }
+      let one =1;
+      if (one== 1) {
+        notify();
+      }
   };
   return (
     <>

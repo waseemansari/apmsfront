@@ -1,7 +1,5 @@
 import React from "react";
 import * as Yup from "yup";
-import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useAdddiaryMutation } from "../../Services/api";
 import { useForm } from "react-hook-form";
@@ -29,8 +27,7 @@ export default function Creatediary() {
     defaultValues,
   });
   const [adddiary] = useAdddiaryMutation();
-  const dispatch = useDispatch();
-  const navigator = useNavigate();
+  
   const {
     register,
     handleSubmit,
@@ -54,9 +51,10 @@ export default function Creatediary() {
 
          toast.error(error.data.message)
       });
-    if (1 == 1) {
-      notify();
-    }
+      let one =1;
+      if (one== 1) {
+        notify();
+      }
   };
   return (
     <>
