@@ -52,7 +52,7 @@ export default function Creatediary() {
          toast.error(error.data.message)
       });
       let one =1;
-      if (one== 1) {
+      if (one === 1) {
         notify();
       }
   };
