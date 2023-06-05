@@ -6,7 +6,6 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../__Layout/Header";
-
 export default function PasswordUpdate() {
   
   const validationSchema = Yup.object().shape({
@@ -73,7 +72,7 @@ export default function PasswordUpdate() {
                 <div className="row mb-3">
                   <label htmlFor="inputText" className="col-sm-2 col-form-label">New password</label>
                   <div className="col-sm-10">
-                    <input type="password" {...register("new_password")} className="form-control" />
+                    <input type="name" {...register("new_password")} className="form-control" />
                     <span className="text-danger">{errors.new_password?.message}</span>
 
                   </div>

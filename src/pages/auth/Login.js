@@ -48,7 +48,6 @@ export default function Login() {
         }
       })
       .catch((error) => {
-        console.log(error);
         toast.error(error.data.message)
       });
       let one =1;

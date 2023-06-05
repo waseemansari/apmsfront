@@ -2,10 +2,25 @@ import Navbar from './Navbar';
 import { Link ,useNavigate} from "react-router-dom";
 import { useLogoutMutation } from "../Services/api";
 import PATHS from "../routes/paths";
-import {toast } from 'react-toastify';
-
+import React , {useEffect, useState} from "react";
+import {  useSelector,useDispatch } from 'react-redux';
+import { userLogout } from "../redux/authSlice";
 export default function Header() {
-    
+    const [name,setName] = useState("")
+    const dispatch = useDispatch();
+    const [designation,setDesignation] = useState("")
+    const {userDetail } = useSelector(
+        (state) => state.auth
+      )
+      
+    useEffect(()=>{
+        if(userDetail){
+            setName(userDetail['user'][0]['name'])
+            setDesignation(userDetail['user'][0]['designation'])
+        }else{
+            navigator(PATHS.signout);
+        }
+    },[userDetail])
     const navigator = useNavigate();
     const [logout] = useLogoutMutation();
     const logoutUser = (values) => {
@@ -16,15 +31,18 @@ export default function Header() {
         .then((payload) => {
             
           if (payload.status) {
+            const response = {
+                userDetail: null,
+                isLoggedIn: false
+            };
+            dispatch(userLogout(response));
             navigator(PATHS.signout);
-            toast.success(payload.message)
+           
           } else {
            
-            console.log(payload.message);
           }
         })
         .catch((error) => {
-          console.log(error);
         
         });
       
@@ -49,13 +67,13 @@ export default function Header() {
 
                             <Link className="nav-link nav-profile d-flex align-items-center pe-0" to="#" data-bs-toggle="dropdown">
                                 {/* <img src="assets/img/profile-img.jpg" alt="Profile" className="rounded-circle" /> */}
-                                <span className="d-none d-md-block dropdown-toggle ps-2">nikki</span>
+                                <span className="d-none d-md-block dropdown-toggle ps-2">{name}</span>
                             </Link>
 
                             <ul className="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
                                 <li className="dropdown-header">
-                                    <h6>nikki</h6>
-                                    <span>admin</span>
+                                    <h6>{name}</h6>
+                                    <span>{designation}</span>
                                 </li>
                                 <li>
                                     <hr className="dropdown-divider" />

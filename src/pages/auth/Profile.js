@@ -1,4 +1,4 @@
-import React from "react";
+import React , {useEffect, useState} from "react";
 import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {useUpdateProfileMutation} from "../../Services/api";
@@ -6,13 +6,28 @@ import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import Header from "../../__Layout/Header";
+import {  useSelector,useDispatch } from 'react-redux';
+import { updateUserProfile } from "../../redux/authSlice";
 
 export default function Profile() {
-  
+  const [name,setName] = useState("")
+  const [phoneNumber,setPhoneNumber] = useState("")
+  const [designation,setDesignation] = useState("")
+  const { userDetail } = useSelector(
+    (state) => state.auth
+  )
+  useEffect(()=>{
+    if(userDetail){
+      setName(userDetail['user'][0]['name'])
+      setPhoneNumber(userDetail['user'][0]['phone_number'])
+      setDesignation(userDetail['user'][0]['designation'])
+    }
+    
+  },[userDetail])
+  const dispatch = useDispatch();
   const validationSchema = Yup.object().shape({
     name: Yup.string().required("name fields is required"),
   });
-
   let defaultValues = { name: ""};
   const notify = () => '';
   const methods = useForm({
@@ -33,16 +48,19 @@ export default function Profile() {
       .unwrap()
       .then((payload) => {
         if (payload.status) {
-          
-          toast.success(payload.message)
+          const response = {
+            user: payload.data,
+          };
+          console.log(payload);
+          dispatch(updateUserProfile(response));
+           toast.success(payload.message)
         } else {
            toast.error(payload.message)
-
         }
       })
       .catch((error) => {
-
-         toast.error(error.data.message)
+      
+         toast.error(error.error)
       });
       let one =1;
       if (one === 1) {
@@ -61,7 +79,11 @@ export default function Profile() {
                 <div className="row mb-3">
                   <label htmlFor="inputText" className="col-sm-2 col-form-label">Name</label>
                   <div className="col-sm-10">
-                    <input type="name" {...register("name")} className="form-control" />
+                    <input type="name"  
+                    {...register('name', {
+                      onChange: (e) => {setName(e.target.value)},
+                     })} 
+                    value={name} className="form-control" />
                     <span className="text-danger">{errors.name?.message}</span>
 
                   </div>
@@ -69,7 +91,11 @@ export default function Profile() {
                 <div className="row mb-3">
                   <label htmlFor="inputText" className="col-sm-2 col-form-label">Phone Number</label>
                   <div className="col-sm-10">
-                    <input type="number" {...register("phone_number")} className="form-control" />
+                    <input type="number" 
+                    {...register('phone_number', {
+                      onChange: (e) => {setPhoneNumber(e.target.value)},
+                     })}
+                    value={phoneNumber} className="form-control" />
                     <span className="text-danger">{errors.phone_number?.message}</span>
 
                   </div>
@@ -77,7 +103,11 @@ export default function Profile() {
                 <div className="row mb-3">
                   <label htmlFor="inputText" className="col-sm-2 col-form-label">Destination</label>
                   <div className="col-sm-10">
-                    <input type="text" {...register("designation")} className="form-control" />
+                    <input type="text"
+                    {...register('designation', {
+                      onChange: (e) => {setDesignation(e.target.value)},
+                     })}
+                      value={designation}  className="form-control" />
                     <span className="text-danger">{errors.destination?.message}</span>
 
                   </div>

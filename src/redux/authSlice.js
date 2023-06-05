@@ -12,7 +12,11 @@ const persistConfig = {
 const initialState = {
   isLoggedIn: false,
   userDetail: null,
-  userPermissions: []
+  userPermissions: [], 
+  loading: false,
+  userToken: null,
+  error: null,
+  success: false,
 };
 
 export const authSlice = createSlice({
@@ -22,15 +26,16 @@ export const authSlice = createSlice({
     loggedIn: (state, data) => {
       state.isLoggedIn = true;
       state.userDetail = data.payload;
-      state.userPermissions = data.payload?.user?.permission;
-    },
-    userLogout: (state, data) => {
-      state.userDetail = null;
-      state.isLoggedIn = false;
+      //state.userPermissions = data.payload?.user?.permission;
     },
     updateUserProfile: (state, data) => {
       state.userDetail.user = { ...state.userDetail.user, ...data.payload };
     },
+    userLogout: (state, data) => {
+      state.userDetail = null;
+      state.isLoggedIn = false;
+    }, 
+    
   },
 });
 
