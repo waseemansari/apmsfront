@@ -8,4 +8,5 @@ export const API_END_POINTS = {
   diarylist: BASE_URL + "diary-list",
   deletediary: BASE_URL + "diary-delete",
   managerList: BASE_URL + "manager-list",
+  manager: BASE_URL + "manager",
 }; 

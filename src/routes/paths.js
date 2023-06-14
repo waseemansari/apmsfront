@@ -10,6 +10,7 @@ const paths = {
   newPassword: '/newpassword/:token_id',
   dashboard: '/dashboard',
   diaryList: '/diary-list',
+  managerList: '/manager-list',
   branches : path(ROOTS_DASHBOARD,'/branches'),
   signout: '/',
 }

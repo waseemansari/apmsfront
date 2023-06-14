@@ -44,6 +44,7 @@ export default function Profile() {
   } = methods;
   
   const onSubmitProfile = (values) => {
+    
     UpdateProfile({ data: values })
       .unwrap()
       .then((payload) => {
@@ -51,7 +52,6 @@ export default function Profile() {
           const response = {
             user: payload.data,
           };
-          console.log(payload);
           dispatch(updateUserProfile(response));
            toast.success(payload.message)
         } else {
@@ -62,10 +62,8 @@ export default function Profile() {
       
          toast.error(error.error)
       });
-      let one =1;
-      if (one === 1) {
-        notify();
-      }
+      notify();
+     
   };
   return (
     <>

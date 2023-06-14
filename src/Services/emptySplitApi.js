@@ -21,6 +21,6 @@ export const emptySplitApi = createApi({
   endpoints: () => ({}),
   tagTypes: [
     
-   
+    "getManager"
   ],
 });

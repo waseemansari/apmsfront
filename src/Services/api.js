@@ -5,6 +5,7 @@ import { API_END_POINTS } from "../config/ApiEndPoints";
 export const api = emptySplitApi.injectEndpoints({
   reducerPath: "api",
   refetchOnMountOrArgChange: true,
+  refetchOnFocus:true,
   endpoints: (builder) => ({
     loginuser: builder.mutation({
       query: ({ data }) => ({
@@ -64,7 +65,55 @@ export const api = emptySplitApi.injectEndpoints({
         };
       },
     }),
-   
+   ////////////////manager////////////
+   addManager: builder.mutation({
+      query: ({ data }) => ({
+        url: API_END_POINTS.manager,
+        method: "POST",
+        body: { ...data },
+        
+      }),
+      invalidatesTags:["getManager"]
+   }),
+   updateManager: builder.mutation({
+        query: ({ data,param }) => {
+          return {
+            url: API_END_POINTS.manager+'/'+param,
+            method: "PUT",
+            body: { ...data },
+          };
+        },
+        invalidatesTags:["getManager"]
+    }),
+    deleteManager: builder.mutation({
+        query: ({ data }) => ({
+          url: API_END_POINTS.manager,
+          method: "DELETE",
+          body: { ...data },
+        }),
+        invalidatesTags:["getManager"]
+    }),
+    getManager: builder.query({
+        query: ({ pageUrl, params }) => {
+          return {
+            url: pageUrl || API_END_POINTS.manager,
+            method: "GET",
+            params,
+          };
+        },
+        providesTags:["getManager"]
+    }),
+    showManager: builder.query({
+          query: ({ params }) => {
+            return {
+              url: API_END_POINTS.manager+'/'+params,
+              method: "GET",
+              params,
+            };
+          },
+         
+      }),
+   ///////////////end manager ////////
   }),
 
   overrideExisting: true,
@@ -75,8 +124,15 @@ export const {
   useUpdatepasswordMutation,
   useUpdateProfileMutation,
   useLogoutMutation,
+  ///////////diary list////
   useAdddiaryMutation,
   usedeletediaryMutation,
   useGetdiarylistQuery,
+  /////////manager list/////////
   useGetManagerListQuery,
+  useGetManagerQuery,
+  useShowManagerQuery,
+  useAddManagerMutation,
+  useUpdateManagerMutation,
+  useDeleteManagerMutation,
 } = api;

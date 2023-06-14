@@ -1,7 +1,8 @@
-import React from "react";
+import React , {useEffect, useState} from "react";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import {  useSelector,useDispatch } from 'react-redux';
+
 import { yupResolver } from "@hookform/resolvers/yup";
 import PATHS from "../../routes/paths";
 import { loggedIn } from "../../redux/authSlice";
@@ -16,7 +17,14 @@ export default function Login() {
     password: Yup.string().required("Password is required").min(3, "Password must be at least 8 characters")
       .required("Password is required"),
   });
-
+  const {userDetail } = useSelector(
+    (state) => state.auth
+  )
+    useEffect(()=>{
+      if(userDetail){
+        navigator(PATHS.dashboard);
+      }
+  },[userDetail])
   let defaultValues = { email: "", password: "" };
   const notify = () => '';
   const methods = useForm({
@@ -37,24 +45,29 @@ export default function Login() {
       .unwrap()
       .then((payload) => {
         if (payload.status) {
-          const response = {
-            token: payload.token,
-            user: payload.data,
-          };
-          dispatch(loggedIn(response));
-          navigator(PATHS.dashboard);
+          if(payload.data===0){
+            toast.error(payload.message)
+          }
+          else{
+            const response = {
+              token: payload.token,
+              user: payload.data,
+            };
+            dispatch(loggedIn(response));
+            navigator(PATHS.dashboard);
+          }
+          
         } else {
           toast.error(payload.message)
         }
       })
       .catch((error) => {
-        toast.error(error.data.message)
+          toast.error(error.data)
       });
-      let one =1;
-      if (one === 1) {
-        notify();
-      }
+      notify();
+    
   };
+
   return (
     <>
       <main>

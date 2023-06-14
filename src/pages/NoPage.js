@@ -1,5 +1,4 @@
 import Header from '../__Layout/Header';
-import notFound from "../assets/img/not-found.svg"; 
 import { Link } from "react-router-dom";
 export default function NoPage() {
     return (
@@ -12,7 +11,6 @@ export default function NoPage() {
                         <h1>404</h1>
                         <h2>The page you are looking for doesn't exist.</h2>
                         <Link className="btn" to="/">Back to home</Link>
-                        <img src={notFound} className="img-fluid py-5" alt="Page Not Found" />
                         <div className="credits">
                         
                    

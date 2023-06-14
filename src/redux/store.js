@@ -10,6 +10,7 @@ import {
 } from "redux-persist";
 import { api } from "../Services/api";
 import authSlice from "./authSlice";
+import { setupListeners } from "@reduxjs/toolkit/dist/query";
 
 
 export const store = configureStore({
@@ -25,5 +26,6 @@ export const store = configureStore({
     }).concat(api.middleware),
     devTools: process.env.NODE_ENV !== 'production',
 });
-
+setupListeners(store.dispatch);
 export const persistor = persistStore(store);
+
