@@ -45,7 +45,7 @@ export default function UpdateManagerPage(props) {
         reset,
         formState: { errors },
       } = methods;
-      useMemo(() => {
+      useEffect(() => {
         reset(defaultValues)
       },[reset,defaultValues])
       
