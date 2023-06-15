@@ -10,8 +10,10 @@ import {  useGetManagerQuery,useAddManagerMutation ,useDeleteManagerMutation} fr
 
 import UpdateManagerPage from './UpdateManagerPage';
 export default function ManagerList() {
-    const [pageUrl, setPageUrl] = useState("");
-    const [search, setSearchQuery] = useState("");
+    // const [pageUrl, setPageUrl] = useState("");
+    // const [search, setSearchQuery] = useState("");
+    const pageUrl = "";
+    const search = "";
     const validationSchema = Yup.object().shape({
         name: Yup.string().required("name fields is required"),
         designation: Yup.string().required("designation fields is required"),

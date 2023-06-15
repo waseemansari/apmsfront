@@ -1,7 +1,7 @@
 import * as Yup from "yup";
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
-import React , {useEffect, useState} from "react";
+import React , {useEffect,useMemo} from "react";
 import { yupResolver } from "@hookform/resolvers/yup";
 import {  useShowManagerQuery,useUpdateManagerMutation } from "../../Services/api";
 export default function UpdateManagerPage(props) {
@@ -16,20 +16,21 @@ export default function UpdateManagerPage(props) {
       });
       const {
         data: showManager,
-         isLoading: isGetLoading,
+        //  isLoading: isGetLoading,
         // isSuccess: isGetSuccess,
         // isError: isGetError,
         // error: getError,
       } =  useShowManagerQuery({  params:props['id']});
       const [updateManager] = useUpdateManagerMutation();
       const managerData= showManager?.data[0];
-     let  defaultValues={
+      var  defaultValues={
       name:managerData?.name,
       phone_number:showManager?.data[0]?.phone_number,
       designation:managerData?.designation,
       email:managerData?.email,
       level:managerData?.level,
     };
+   
     
     const methods = useForm({
       mode: "onTouched",
@@ -44,9 +45,9 @@ export default function UpdateManagerPage(props) {
         reset,
         formState: { errors },
       } = methods;
-      useEffect(() => {
+      useMemo(() => {
         reset(defaultValues)
-      },[managerData])
+      },[reset,defaultValues])
       
     const updateManagerList = (values,e) => {
         updateManager({ data: values,param:props['id'] })

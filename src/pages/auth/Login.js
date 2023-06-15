@@ -1,4 +1,4 @@
-import React , {useEffect, useState} from "react";
+import React , {useEffect} from "react";
 import * as Yup from "yup";
 import { useNavigate } from "react-router-dom";
 import {  useSelector,useDispatch } from 'react-redux';
@@ -17,6 +17,8 @@ export default function Login() {
     password: Yup.string().required("Password is required").min(3, "Password must be at least 8 characters")
       .required("Password is required"),
   });
+  const dispatch = useDispatch();
+  const navigator = useNavigate();
   const {userDetail } = useSelector(
     (state) => state.auth
   )
@@ -24,7 +26,7 @@ export default function Login() {
       if(userDetail){
         navigator(PATHS.dashboard);
       }
-  },[userDetail])
+  },[userDetail,navigator])
   let defaultValues = { email: "", password: "" };
   const notify = () => '';
   const methods = useForm({
@@ -33,8 +35,7 @@ export default function Login() {
     defaultValues,
   });
   const [loginuser] = useLoginuserMutation();
-  const dispatch = useDispatch();
-  const navigator = useNavigate();
+  
   const {
     register,
     handleSubmit,

@@ -7,6 +7,7 @@ import {  useSelector,useDispatch } from 'react-redux';
 import { userLogout } from "../redux/authSlice";
 export default function Header() {
     const [name,setName] = useState("")
+    const navigator = useNavigate();
     const dispatch = useDispatch();
     const [designation,setDesignation] = useState("")
     const {userDetail } = useSelector(
@@ -20,8 +21,8 @@ export default function Header() {
         }else{
             navigator(PATHS.signout);
         }
-    },[userDetail])
-    const navigator = useNavigate();
+    },[userDetail,navigator])
+    
     const [logout] = useLogoutMutation();
     const logoutUser = (values) => {
         // localStorage.removeItem('token-info');
@@ -35,8 +36,8 @@ export default function Header() {
                 userDetail: null,
                 isLoggedIn: false
             };
-            dispatch(userLogout(response));
-            navigator(PATHS.signout);
+              dispatch(userLogout(response));
+              navigator(PATHS.signout);
            
           } else {
            
