@@ -47,7 +47,7 @@ export default function UpdateManagerPage(props) {
       } = methods;
       useEffect(() => {
         reset(defaultValues)
-      },[reset,defaultValues])
+      },[managerData])
       
     const updateManagerList = (values,e) => {
         updateManager({ data: values,param:props['id'] })

@@ -43,6 +43,7 @@ export const api = emptySplitApi.injectEndpoints({
     }),
     getdiarylist: builder.query({
       query: ({ pageUrl, params }) => {
+        console.log(params);
         return {
           url: pageUrl || API_END_POINTS.diarylist,
           method: "GET",
@@ -95,11 +96,13 @@ export const api = emptySplitApi.injectEndpoints({
     }),
     getManager: builder.query({
         query: ({ pageUrl, params }) => {
+        //  console.log(params);
           return {
             url: pageUrl || API_END_POINTS.manager,
             method: "GET",
             params,
           };
+        
         },
         providesTags:["getManager"]
     }),
@@ -108,7 +111,7 @@ export const api = emptySplitApi.injectEndpoints({
             return {
               url: API_END_POINTS.manager+'/'+params,
               method: "GET",
-              params,
+             
             };
           },
          

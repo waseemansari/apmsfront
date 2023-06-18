@@ -1,6 +1,8 @@
 import Header from '../../__Layout/Header';
 import FullCalendar from '@fullcalendar/react' // must go before plugins
 import dayGridPlugin from '@fullcalendar/daygrid' // a plugin!
+import interactionPlugin from "@fullcalendar/interaction" // needed for dayClick
+
 import React from 'react';
 import { Link} from "react-router-dom"
 import {  useGetdiarylistQuery } from "../../Services/api";
@@ -21,6 +23,10 @@ export default function DiaryList() {
         const w = diaryList?.chart;
       
        const events= w; ////
+       
+      const handleDateClick = (arg) => { // bind with an arrow function
+        alert(arg.event.title)
+      }
     return (
         <div className="vehicleCategories">
             
@@ -45,13 +51,11 @@ export default function DiaryList() {
                          
                         
                         <FullCalendar
-                            plugins={[ dayGridPlugin ]}
+                            plugins={[ dayGridPlugin,interactionPlugin ]}
+                            
                             initialView="dayGridMonth"
- 
                             events={events}
-                                   
-                            
-                            
+                            eventClick={handleDateClick}
                             />  
                                 
                         </div>
@@ -68,7 +72,7 @@ export default function DiaryList() {
                                                         <tr>
                                                             <th>#</th>
                                                             <th className='text-capitalize'>Date</th>
-                                                            <th className='text-capitalize'>Manager Name</th>
+                                                            <th className='text-capitalize'>Trainers Name</th>
                                                             <th className='text-capitalize'>Detail</th>
                                                             <th className='text-capitalize'>action</th>
                                                         </tr>

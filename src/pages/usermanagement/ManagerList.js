@@ -5,15 +5,15 @@ import * as Yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useForm } from "react-hook-form";
 import { toast } from 'react-toastify';
-
+import Loader from '../../utils/Loader';
 import {  useGetManagerQuery,useAddManagerMutation ,useDeleteManagerMutation} from "../../Services/api";
 
 import UpdateManagerPage from './UpdateManagerPage';
 export default function ManagerList() {
-    // const [pageUrl, setPageUrl] = useState("");
-    // const [search, setSearchQuery] = useState("");
-    const pageUrl = "";
-    const search = "";
+    const [pageUrl, setPageUrl] = useState("");
+    const [page, setPage] = useState(0);
+    const [size, setSize] = useState(10);
+    const [search, setSearch] = useState("");
     const validationSchema = Yup.object().shape({
         name: Yup.string().required("name fields is required"),
         designation: Yup.string().required("designation fields is required"),
@@ -29,13 +29,16 @@ export default function ManagerList() {
       resolver: yupResolver(validationSchema),
       defaultValues,
     });
+    
+    
     const {
         data: getManager,
-        // isLoading: isGetLoading,
+        isLoading: isGetLoading,
         // isSuccess: isGetSuccess,
         // isError: isGetError,
         // error: getError,
-      } = useGetManagerQuery({ pageUrl, params: { search } });
+      } = useGetManagerQuery({ pageUrl, params:  {search,page,size}  });
+   
       const {
         register,
         handleSubmit,
@@ -81,7 +84,19 @@ export default function ManagerList() {
                 notify();
       }
       const [adminId,setAdminId] = useState("");
-     
+      const getPrevious= () => {
+        setPage(page-1);
+        setSearch("");
+      }
+      const getNext=()=>{
+        setPage(page+1);
+        setSearch("");
+      }
+      const findSearch=(e)=>{
+        setPage(0);
+        setSearch(e.target.value);
+      }
+      if(isGetLoading)  <Loader></Loader>
       return (
         <div className="vehicleCategories">
             
@@ -91,13 +106,13 @@ export default function ManagerList() {
                 
             <div className="card">
                 <div className="card-body">
-                    <h5 className="card-title">Manager List</h5>
+                    <h5 className="card-title">Trainers List</h5>
                     <ul className="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
                        <li className="nav-item flex-fill" role="presentation">
-                        <button className="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home" aria-selected="true">Manager List</button>
+                        <button className="nav-link w-100 active" id="home-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-home" type="button" role="tab" aria-controls="home" aria-selected="true">Trainers  List</button>
                         </li>
                         <li className="nav-item flex-fill" role="presentation">
-                        <button className="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Manager Add</button>
+                        <button className="nav-link w-100" id="profile-tab" data-bs-toggle="tab" data-bs-target="#bordered-justified-profile" type="button" role="tab" aria-controls="profile" aria-selected="false">Trainers  Add</button>
                         </li>
                     </ul>
                     <div className="tab-content pt-2" id="borderedTabJustifiedContent">
@@ -107,12 +122,12 @@ export default function ManagerList() {
                                     <div className="col-lg-12">
                                         <div className="card">
                                             <div className="card-body">
-                                                <h5 className="card-title">Manager List</h5>
+                                                <h5 className="card-title">Trainers List</h5>
                                                 <div className='row'>
                                                     <div className='col-lg-8'></div>
                                                     <div className='col-lg-4'>
                                                         <div className="datatable-search pull-right">
-                                                            <input className="datatable-input" placeholder="Search..." type="search" title="Search within table" />
+                                                            <input className="datatable-input" placeholder="Search..." type="search" title="Search within table" onChange={findSearch}/>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -133,7 +148,7 @@ export default function ManagerList() {
                                                         <tbody>
                                                         {
                                                     
-                                                    getManager?.data?.manager?.map((item) => {
+                                                            getManager?.data?.manager?.map((item) => {
                                                             return (
                                                                 <tr key={item.admin_id}>
                                                                     <th scope="row">{item.admin_id}</th>
@@ -170,16 +185,27 @@ export default function ManagerList() {
                                                                     </td>
                                                                 </tr>                                            
                                                                 )
+                                                                
                                                             })
+                                                           
+                                                            
                                                         } 
                                                         </tbody>
-                                                    </table>                        
-
+                                                </table>                        
+                                                <nav aria-label="Page navigation example">
+                                                    <ul className="pagination">
+                                                    {getManager?.data?.currentPage !=0 ? <li className="page-item"><button type="button" className="page-link" onClick={getPrevious}>Previous</button></li> :''}
+                                                    
+                                                    <li className="page-item"> {getManager?.data?.currentPage+1} </li>                                                  
+                                                    <li className="page-item"> of {getManager?.data?.totalPages}</li>
+                                                    {getManager?.data?.currentPage !=getManager?.data?.totalPages ? <li className="page-item"><button type="button" className="page-link" onClick={getNext}>Next</button></li>:''}
+                                                    </ul>
+                                                </nav>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </section>   
+                            </section>  
                         </div>
                        
                         <UpdateManagerPage id={adminId}></UpdateManagerPage>
@@ -187,7 +213,7 @@ export default function ManagerList() {
                             <section className="section">
                                 <div className="card">
                                     <div className="card-body">
-                                    <h5 className="card-title">Add manager</h5>
+                                    <h5 className="card-title">Add Trainers</h5>
                                     <form onSubmit={handleSubmit(onSubmit)} >
                                         <div className="row mb-3">
                                             <label htmlFor="inputText" className="col-sm-2 col-form-label text-capitalize">name</label>
@@ -237,7 +263,7 @@ export default function ManagerList() {
                                         <div className="row mb-3">
                                             <label className="col-sm-2 col-form-label"></label>
                                             <div className="col-sm-10">
-                                                <button type="submit" className="btn btn-warning w-100" >Add Manager</button>
+                                                <button type="submit" className="btn btn-warning w-100" >Add Trainers</button>
                                             </div>
                                         </div>
 

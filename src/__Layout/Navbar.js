@@ -35,7 +35,7 @@ export default function Navbar() {
                         <ul id="manager-nav" className="nav-content collapse " data-bs-parent="#sidebar-nav">
                             <li>
                                 <Link to="/manager-list">
-                                    <i className="bi bi-circle"></i><span>Manager List</span>
+                                    <i className="bi bi-circle"></i><span>Trainers List</span>
                                 </Link>
                             </li>
                 

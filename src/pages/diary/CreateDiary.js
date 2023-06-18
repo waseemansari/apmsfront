@@ -15,7 +15,7 @@ export default function Creatediary() {
   } = useGetManagerListQuery();
   const validationSchema = Yup.object().shape({
     date: Yup.string().required("Date fields is required"),
-    user_id: Yup.string().required("Manager fields is required"),
+    user_id: Yup.string().required("Trainers fields is required"),
     detail: Yup.string().required("Detail fields is required"),
   });
   let defaultValues = { date: ""};
