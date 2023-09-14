@@ -1,4 +1,4 @@
-export const BASE_URL = process.env.REACT_APP_BACKEND_URL_LIVE;
+export const BASE_URL = 'https://crmbackendapp-d1b27fe9df4f.herokuapp.com/api/v1/add-diary';
 export const API_END_POINTS = {
   login: BASE_URL + "auth/login",
   logout: BASE_URL + "auth/logout",
