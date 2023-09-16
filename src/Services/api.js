@@ -34,22 +34,43 @@ export const api = emptySplitApi.injectEndpoints({
         method: "POST",
       }),
     }),
-    adddiary: builder.mutation({
-      query: ({ data }) => ({
-        url: API_END_POINTS.adddiary,
-        method: "POST",
-        body: { ...data },
-      }),
-    }),
     getdiarylist: builder.query({
       query: ({ pageUrl, params }) => {
-        console.log(params);
         return {
           url: pageUrl || API_END_POINTS.diarylist,
           method: "GET",
           params,
         };
       },
+      providesTags:["getDiarylist"]
+    }),
+    adddiary: builder.mutation({
+      query: ({ data }) => ({
+        url: API_END_POINTS.adddiary,
+        method: "POST",
+        body: { ...data },
+      }),
+      invalidatesTags:["getDiarylist"]
+    }),
+    updateDiary: builder.mutation({
+      query: ({ data,param }) => {
+        return {
+          url: API_END_POINTS.updatediary+'/'+param,
+          method: "PUT",
+          body: { ...data },
+        };
+      },
+      invalidatesTags:["getDiarylist"]
+    }),
+    singleDiary: builder.query({
+      query: ({ data,params }) => {
+        return {
+          url: API_END_POINTS.singleDiary+'/'+params,
+          method: "GET",
+          params,
+        };
+      },
+      invalidatesTags:["getDiarylist"]
     }),
     deletediary: builder.mutation({
       query: ({ data }) => ({
@@ -57,6 +78,7 @@ export const api = emptySplitApi.injectEndpoints({
         method: "DELETE",
         body: { ...data },
       }),
+      invalidatesTags:["getDiarylist"]
     }),
     getManagerList: builder.query({
       query: () => {
@@ -96,7 +118,7 @@ export const api = emptySplitApi.injectEndpoints({
     }),
     getManager: builder.query({
         query: ({ pageUrl, params }) => {
-        //  console.log(params);
+       
           return {
             url: pageUrl || API_END_POINTS.manager,
             method: "GET",
@@ -129,8 +151,10 @@ export const {
   useLogoutMutation,
   ///////////diary list////
   useAdddiaryMutation,
-  usedeletediaryMutation,
+  useDeletediaryMutation,
+  useUpdateDiaryMutation,
   useGetdiarylistQuery,
+  useSingleDiaryQuery,
   /////////manager list/////////
   useGetManagerListQuery,
   useGetManagerQuery,

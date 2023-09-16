@@ -1,14 +1,11 @@
 
+import "./loader.css";
 
 export default function Loader() {
-    return (<div className="lightbox" id="wait_lightbox">
-    <div className="row">
-      <div className="col-lg-12">
-          <div className="spinner-border" role="status">
-              <span className="visually-hidden">Loading...</span>
-            </div>
-      </div>
-    </div>
-  </div>)
+    return (<>
+       <div className="loading">Loading&#8230;</div>
+
+      <div className="content"><h3>!</h3></div>
+    </>)
 
 }

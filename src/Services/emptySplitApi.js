@@ -20,7 +20,7 @@ export const emptySplitApi = createApi({
   }),
   endpoints: () => ({}),
   tagTypes: [
-    
-    "getManager"
+    "getDiarylist",
+    "getManager",
   ],
 });

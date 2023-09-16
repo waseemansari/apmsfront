@@ -83,7 +83,7 @@ export default function Creatediary() {
                               )
                           })
                       }
-                         </select>
+                    </select>
                   </div>
                 </div>               
                 <div className="row mb-3">

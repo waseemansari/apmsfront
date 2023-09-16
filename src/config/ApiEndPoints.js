@@ -6,7 +6,9 @@ export const API_END_POINTS = {
   updatePassword: BASE_URL + "auth/update-password",
   adddiary: BASE_URL + "add-diary",
   diarylist: BASE_URL + "diary-list",
+  updatediary: BASE_URL + "update-diary",
+  singleDiary: BASE_URL + "single-diary",
   deletediary: BASE_URL + "diary-delete",
   managerList: BASE_URL + "manager-list",
   manager: BASE_URL + "manager",
-}; 
+};  
