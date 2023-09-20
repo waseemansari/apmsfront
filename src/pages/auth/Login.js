@@ -24,6 +24,8 @@ export default function Login() {
   )
     useEffect(()=>{
       if(userDetail){
+       
+        sessionStorage.setItem("admin_id", userDetail['user'][0]['admin_id']);
         navigator(PATHS.dashboard);
       }
   },[userDetail,navigator])

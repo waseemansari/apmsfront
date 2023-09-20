@@ -7,7 +7,7 @@ import Loader from '../../utils/Loader';
 import React , {useState} from "react";
 import UpdateDiary from "./UpdateDiary.js";
 import WarningAlert from '../../utils/WarningAlert';
-import Background from "../../assets/img/background.jpg";
+import Background from "../../assets/img/bg2.jpeg";
 import {  useGetdiarylistQuery,useDeletediaryMutation } from "../../Services/api";
 export default function DiaryList() {
     // const [pageUrl, setPageUrl] = useState("");

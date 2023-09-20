@@ -21,7 +21,6 @@ export default function Profile() {
       setName(userDetail['user'][0]['name'])
       setPhoneNumber(userDetail['user'][0]['phone_number'])
       setDesignation(userDetail['user'][0]['designation'])
-      sessionStorage.setItem("admin_id", userDetail['user'][0]['admin_id']);
     }
     
   },[userDetail])

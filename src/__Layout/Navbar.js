@@ -23,7 +23,8 @@ export default function Navbar() {
                                     <i className="bi bi-circle"></i><span>Diary List</span>
                                 </Link>
                             </li>
-                            {admin_id ==1 ? 
+                            {admin_id =='1' ? 
+                           
                             <li>
                                 <Link to="/add-diary">
                                     <i className="bi bi-circle"></i><span>Add Diary</span>

@@ -36,6 +36,8 @@ export default function Header() {
                 userDetail: null,
                 isLoggedIn: false
             };
+              sessionStorage.removeItem("admin_id");
+
               dispatch(userLogout(response));
               navigator(PATHS.signout);
            
