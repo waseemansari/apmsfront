@@ -7,6 +7,7 @@ import Loader from '../../utils/Loader';
 import React , {useState} from "react";
 import UpdateDiary from "./UpdateDiary.js";
 import WarningAlert from '../../utils/WarningAlert';
+import Background from "../../assets/img/background.jpg";
 import {  useGetdiarylistQuery,useDeletediaryMutation } from "../../Services/api";
 export default function DiaryList() {
     // const [pageUrl, setPageUrl] = useState("");
@@ -49,13 +50,23 @@ export default function DiaryList() {
         }   
     }
     const [diaryId,setDiaryId] = useState("");
-   
+    const admin_id = sessionStorage.getItem("admin_id");
+
     if(isGetLoading) return  <Loader></Loader>
     return (
         <div className="vehicleCategories">
             <Header />
             <main id="main" className="main">   
-            <div className="card">
+            <div className="card"
+                style={{
+                  backgroundImage: `url(${Background})`,
+                  backgroundPosition: 'center',
+                  backgroundSize: 'cover',
+                  backgroundRepeat: 'no-repeat',
+                  width: '100%',
+                  height: '100%'
+                }}
+                >
                 <div className="card-body">
                     <h5 className="card-title">Master diary</h5>
                     <ul className="nav nav-tabs nav-tabs-bordered d-flex" id="borderedTabJustified" role="tablist">
@@ -102,6 +113,8 @@ export default function DiaryList() {
                                                                     <td>{item.date}</td>
                                                                     <td>{item.manager}</td>
                                                                     <td>{item.detail}</td>
+                                                                    {admin_id ==1 ? 
+                        
                                                                     <td>
                                                                         <div className="btn-group" role="group" aria-label="Button group with nested dropdown">
 
@@ -128,6 +141,9 @@ export default function DiaryList() {
                                                                         </div>
                                                                         </div>
                                                                     </td>
+                                                                 :
+                                                                  <td>-</td>
+                                                                 }
                                                                 </tr>                                            
                                                                 )
                                                             })
